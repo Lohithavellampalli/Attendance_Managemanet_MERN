@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "John Doe", "attendance": "absent" },
+  { "id": 2, "name": "Jane Smith", "attendance": "absent" },
+  { "id": 3, "name": "Alan Walker", "attendance": "absent" }
+]
