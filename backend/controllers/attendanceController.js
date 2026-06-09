@@ -113,9 +113,16 @@ exports.getAttendanceTable = async (req, res) => {
 exports.getEmployeesByStatusForDate = async (req, res) => {
   try {
     const { date, status } = req.query;
+
+    console.log("DATE:", date);
+    console.log("STATUS:", status);
+
     const employees = await Employee.find({
       attendanceRecords: { $elemMatch: { date, status } }
     });
+
+    console.log("ALL EMPLOYEES:", employees)
+
     res.json(employees);
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch employees.' });
@@ -126,25 +133,145 @@ exports.getEmployeesByStatusForDate = async (req, res) => {
 // Optionally add a way to update/add attendance for a date per employee here!
 
 // In controllers/attendanceController.js
+// exports.updateEmployeeAttendance = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const { date, status } = req.body;
+//     const emp = await Employee.findById(id);
+
+//     if (!emp) return res.status(404).json({ error: 'Employee not found' });
+
+//     // Check if this date already exists
+//     const existingIndex = emp.attendanceRecords.findIndex(r => r.date === date);
+
+//     if (existingIndex !== -1) {
+//       emp.attendanceRecords[existingIndex].status = status;
+//     } else {
+//       emp.attendanceRecords.push({ date, status });
+//     }
+//     await emp.save();
+//     res.json({ message: 'Attendance updated.', employee: emp });
+//   } catch (err) {
+//     res.status(500).json({ error: 'Failed to update attendance.' });
+//   }
+// };
+
 exports.updateEmployeeAttendance = async (req, res) => {
   try {
+    console.log("PATCH HIT");
+    console.log("PARAMS:", req.params);
+    console.log("BODY:", req.body);
+
     const { id } = req.params;
     const { date, status } = req.body;
+
     const emp = await Employee.findById(id);
 
-    if (!emp) return res.status(404).json({ error: 'Employee not found' });
+    console.log("EMPLOYEE FOUND:", emp?.name);
 
-    // Check if this date already exists
-    const existingIndex = emp.attendanceRecords.findIndex(r => r.date === date);
+    if (!emp) {
+      return res.status(404).json({ error: "Employee not found" });
+    }
+
+    const existingIndex = emp.attendanceRecords.findIndex(
+      r => r.date === date
+    );
+
+    console.log("EXISTING INDEX:", existingIndex);
 
     if (existingIndex !== -1) {
       emp.attendanceRecords[existingIndex].status = status;
     } else {
       emp.attendanceRecords.push({ date, status });
     }
+
     await emp.save();
-    res.json({ message: 'Attendance updated.', employee: emp });
+
+    console.log("SAVED SUCCESSFULLY");
+
+    res.json({
+      message: "Attendance updated",
+      employee: emp
+    });
+
   } catch (err) {
-    res.status(500).json({ error: 'Failed to update attendance.' });
+    console.log(err);
+    res.status(500).json({ error: "Failed to update attendance" });
+  }
+};
+
+
+
+exports.addEmployee = async (req, res) => {
+  try {
+    console.log("REQUEST BODY:", req.body);
+
+    const { empID, name, email } = req.body;
+
+    const employee = new Employee({
+      empID,
+      name,
+      email,
+      attendanceRecords: []
+    });
+
+    await employee.save();
+
+    console.log("EMPLOYEE SAVED:", employee);
+
+    res.status(201).json(employee);
+  } catch (err) {
+    console.log("ADD EMPLOYEE ERROR:", err);
+    res.status(500).json({ error: "Failed to add employee" });
+  }
+};
+
+exports.getAllEmployees = async (req, res) => {
+  try {
+    const employees = await Employee.find();
+    res.json(employees);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch employees" });
+  }
+};
+
+exports.deleteEmployee = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Employee.findByIdAndDelete(id);
+
+    res.json({
+      success: true,
+      message: "Employee deleted successfully",
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: "Failed to delete employee" });
+  }
+};
+
+exports.updateEmployee = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { empID, name, email } = req.body;
+
+    const employee = await Employee.findByIdAndUpdate(
+      id,
+      {
+        empID,
+        name,
+        email,
+      },
+      { new: true }
+    );
+
+    res.json({
+      success: true,
+      employee,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Update failed",
+    });
   }
 };

@@ -31,26 +31,65 @@ import React, { useState } from "react";
 import AttendancePage from "./components/AttendancePage";
 import PresentEmployeesPage from "./components/PresentEmployeesPage";
 import AbsentEmployeesPage from "./components/AbsentEmployeesPage";
+import LoginPage from "./components/LoginPage";
+import Dashboard from "./components/Dashboard";
+import ManageEmployeesPage from "./components/ManageEmployeesPage";
+import HalfDayEmployeesPage from "./components/HalfDayEmployeesPage";
+import MonthlyReportPage from "./components/MonthlyReportPage";
+import Sidebar from "./components/Sidebar";
 
 function App() {
-  const [view, setView] = useState("main");
+  const [view, setView] = useState("login");
+  const [showReport, setShowReport] = useState(false);
 
   return (
-    <div>
-      {view === "main" && (
-        <div style={{
-          display: "flex", flexDirection: "column", alignItems: "center",
-          justifyContent: "center", height: "100vh"
-        }}>
-          <button style={{ fontSize: 22, margin: 10 }} onClick={() => setView("attendance")}>Employee Attendance</button>
-          <button style={{ fontSize: 22, margin: 10 }} onClick={() => setView("present")}>Employee Present</button>
-          <button style={{ fontSize: 22, margin: 10 }} onClick={() => setView("absent")}>Employee Absent</button>
+  <div>
+
+    {view === "login" && (
+      <LoginPage onLogin={() => setView("main")} />
+    )}
+
+    {view !== "login" && (
+      <div style={{ display: "flex" }}>
+
+        <Sidebar setView={setView} />
+
+        <div style={{ flex: 1, padding: "20px" }}>
+
+          {view === "main" && (
+            <Dashboard onLogout={() => setView("login")} />
+          )}
+
+          {view === "attendance" && (
+            <AttendancePage />
+          )}
+
+          {view === "present" && (
+            <PresentEmployeesPage />
+          )}
+
+          {view === "absent" && (
+            <AbsentEmployeesPage />
+          )}
+
+          {view === "employees" && (
+            <ManageEmployeesPage />
+          )}
+
+          {view === "halfday" && (
+            <HalfDayEmployeesPage />
+          )}
+
+          {view === "monthlyReport" && (
+            <MonthlyReportPage />
+          )}
+
         </div>
-      )}
-      {view === "attendance" && <AttendancePage onBack={() => setView("main")} />}
-      {view === "present" && <PresentEmployeesPage onBack={() => setView("main")} />}
-      {view === "absent" && <AbsentEmployeesPage onBack={() => setView("main")} />}
-    </div>
-  );
+
+      </div>
+    )}
+
+  </div>
+);
 }
 export default App;

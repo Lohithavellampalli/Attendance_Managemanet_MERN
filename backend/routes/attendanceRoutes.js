@@ -26,7 +26,16 @@ router.get('/absent', (req, res) =>
 // In routes/attendanceRoutes.js
 router.patch('/:id/update-attendance', attendanceController.updateEmployeeAttendance);
 
-// If you want:
-// router.get('/halfday', ...);
+router.post('/employee', attendanceController.addEmployee);
+
+router.get('/employees', attendanceController.getAllEmployees);
+
+router.delete('/employees/:id', attendanceController.deleteEmployee);
+
+router.get('/halfday', (req, res) =>
+  attendanceController.getEmployeesByStatusForDate({ ...req, query: { ...req.query, status: 'half day' } }, res)
+);
+
+router.put('/employees/:id', attendanceController.updateEmployee);
 
 module.exports = router;
