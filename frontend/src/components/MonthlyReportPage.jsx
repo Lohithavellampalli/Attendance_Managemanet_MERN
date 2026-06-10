@@ -6,7 +6,7 @@
 //   const [employees, setEmployees] = useState([]);
 
 //   useEffect(() => {
-//     fetch("http://localhost:5000/api/attendance/employees")
+//     fetch("https://attendance-managemanet-mern.onrender.com/api/attendance/employees")
 //       .then((res) => res.json())
 //       .then((data) => setEmployees(data));
 //   }, []);
@@ -126,7 +126,7 @@ function MonthlyReportPage() {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/attendance/employees")
+    fetch("https://attendance-managemanet-mern.onrender.com/api/attendance/employees")
       .then((res) => res.json())
       .then((data) => setEmployees(data));
   }, []);

@@ -16,7 +16,7 @@
 //   }, []);
 
 //   const fetchEmployees = () => {
-//     fetch("http://localhost:5000/api/attendance/employees")
+//     fetch("https://attendance-managemanet-mern.onrender.com/api/attendance/employees")
 //       .then((res) => res.json())
 //       .then((data) => setEmployees(data))
 //       .catch((err) => console.log(err));
@@ -25,7 +25,7 @@
 //   const addEmployee = async () => {
 //     console.log("Edit ID:", editId);
 //     if (editId) {
-//       const response = await fetch(`http://localhost:5000/api/attendance/employees/${editID}`, {
+//       const response = await fetch(`https://attendance-managemanet-mern.onrender.com/api/attendance/employees/${editID}`, {
 //         method: "PUT",
 //         headers: {
 //           "Content-Type": "application/json",   
@@ -53,7 +53,7 @@
 
 //     try {
 //       const response = await fetch(
-//         "http://localhost:5000/api/attendance/employee",
+//         "https://attendance-managemanet-mern.onrender.com/api/attendance/employee",
 //         {
 //           method: "POST",
 //           headers: {
@@ -100,7 +100,7 @@
 //     }
 
 //     try {
-//       const response = await fetch(`http://localhost:5000/api/attendance/employees/${editID}`, {
+//       const response = await fetch(`https://attendance-managemanet-mern.onrender.com/api/attendance/employees/${editID}`, {
 //         method: "PUT",
 //         headers: {
 //           "Content-Type": "application/json",
@@ -130,7 +130,7 @@
 
 //   const deleteEmployee = async (id) => {
 //     try {
-//       const response = await fetch(`http://localhost:5000/api/attendance/employees/${id}`, {
+//       const response = await fetch(`https://attendance-managemanet-mern.onrender.com/api/attendance/employees/${id}`, {
 //         method: "DELETE",
 //       });
 //       const data = await response.json();
@@ -249,7 +249,7 @@
 //   }, []);
 
 //   const fetchEmployees = () => {
-//     fetch("http://localhost:5000/api/attendance/employees")
+//     fetch("https://attendance-managemanet-mern.onrender.com/api/attendance/employees")
 //       .then((res) => res.json())
 //       .then((data) => setEmployees(data))
 //       .catch((err) => console.log(err));
@@ -267,7 +267,7 @@
 
 //     try {
 //       const response = await fetch(
-//         "http://localhost:5000/api/attendance/employee",
+//         "https://attendance-managemanet-mern.onrender.com/api/attendance/employee",
 //         {
 //           method: "POST",
 //           headers: {
@@ -301,7 +301,7 @@
 //   const deleteEmployee = async (id) => {
 //     try {
 //       const response = await fetch(
-//         `http://localhost:5000/api/attendance/employees/${id}`,
+//         `https://attendance-managemanet-mern.onrender.com/api/attendance/employees/${id}`,
 //         {
 //           method: "DELETE",
 //         }
@@ -419,7 +419,7 @@ function ManageEmployeesPage({ onBack }) {
   }, []);
 
   const fetchEmployees = () => {
-    fetch("http://localhost:5000/api/attendance/employees")
+    fetch("https://attendance-managemanet-mern.onrender.com/api/attendance/employees")
       .then((res) => res.json())
       .then((data) => setEmployees(data))
       .catch((err) => console.log(err));
@@ -437,7 +437,7 @@ function ManageEmployeesPage({ onBack }) {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/attendance/employee",
+        "https://attendance-managemanet-mern.onrender.com/api/attendance/employee",
         {
           method: "POST",
           headers: {
@@ -471,7 +471,7 @@ function ManageEmployeesPage({ onBack }) {
   const deleteEmployee = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/attendance/employees/${id}`,
+        `https://attendance-managemanet-mern.onrender.com/api/attendance/employees/${id}`,
         {
           method: "DELETE",
         }

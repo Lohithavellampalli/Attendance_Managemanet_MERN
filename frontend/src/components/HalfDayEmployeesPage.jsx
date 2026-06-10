@@ -8,7 +8,7 @@
 
 //   useEffect(() => {
 //     fetch(
-//       `http://localhost:5000/api/attendance/halfday?date=${date}`
+//       `https://attendance-managemanet-mern.onrender.com/api/attendance/halfday?date=${date}`
 //     )
 //       .then((res) => res.json())
 //       .then((data) => setEmployees(data))
@@ -78,7 +78,7 @@ function HalfDayEmployeesPage({ onBack }) {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/api/attendance/halfday?date=${date}`
+      `https://attendance-managemanet-mern.onrender.com/api/attendance/halfday?date=${date}`
     )
       .then((res) => res.json())
       .then((data) => setEmployees(data))

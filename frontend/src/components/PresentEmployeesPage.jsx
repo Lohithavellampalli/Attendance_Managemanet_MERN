@@ -8,7 +8,7 @@
 //   useEffect(() => {
 //     const fetchEmployees = async () => {
 //       try {
-//         const response = await fetch("http://localhost:5000/api/attendance/employees");
+//         const response = await fetch("https://attendance-managemanet-mern.onrender.com/api/attendance/employees");
 //         const data = await response.json();
 //         setEmployees(data);
 //       } catch (error) {
@@ -74,7 +74,7 @@ function PresentEmployeesPage({ onBack }) {
     const fetchEmployees = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/attendance/employees"
+          "https://attendance-managemanet-mern.onrender.com/api/attendance/employees"
         );
         const data = await response.json();
         setEmployees(data);

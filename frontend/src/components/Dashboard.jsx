@@ -8,7 +8,7 @@
 //   const [halfDayToday, setHalfDayToday] = useState(0);
 
 //   useEffect(() => {
-//     fetch("http://localhost:5000/api/attendance/employees")
+//     fetch("https://attendance-managemanet-mern.onrender.com/api/attendance/employees")
 //       .then((res) => res.json())
 //       .then((data) => {
 //         setTotalEmployees(data.length);
@@ -149,7 +149,7 @@ function Dashboard({ onLogout }) {
   const [halfDayToday, setHalfDayToday] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/attendance/employees")
+    fetch("https://attendance-managemanet-mern.onrender.com/api/attendance/employees")
       .then((res) => res.json())
       .then((data) => {
         setTotalEmployees(data.length);

@@ -10,7 +10,7 @@ function AttendancePage({ onBack }) {
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/attendance/employees");
+        const response = await fetch("https://attendance-managemanet-mern.onrender.com/api/attendance/employees");
         const data = await response.json();
         setEmployees(data);
       } catch (error) {
@@ -51,7 +51,7 @@ const handleAttendanceChange = (empId, value) => {
   const employee = employees.find(e => e._id === empId);
 
   // Save to backend
-  fetch(`http://localhost:5000/api/attendance/${empId}/update-attendance`, {
+  fetch(`https://attendance-managemanet-mern.onrender.com/api/attendance/${empId}/update-attendance`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ date, status: value })
